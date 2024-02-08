@@ -1,0 +1,7 @@
+﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(1119,5): warning MSB8027: Dos o más archivos con el mismo nombre de SistemasOxxo.cpp producirán salidas en la misma ubicación. Esto puede dar lugar a un resultado de compilación incorrecto. Los archivos implicados son SistemasOxxo.cpp, src\SistemasOxxo.cpp.
+  SistemasOxxo.cpp
+/SistemasOxxo.cpp(1,1): error C1083: No se puede abrir el archivo origen: 'SistemasOxxo.cpp': No such file or directory
+  (compilando archivo de origen "/SistemasOxxo.cpp")
+  
+  SistemasOxxo.cpp
+C:\Users\Misael Jr\source\repos\SistemasOxxo\src\SistemasOxxo.cpp(1,10): error C1083: No se puede abrir el archivo incluir: 'Cliente.h': No such file or directory
