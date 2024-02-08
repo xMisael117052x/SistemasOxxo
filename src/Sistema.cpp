@@ -85,6 +85,7 @@ Sistema::Sistema()
 		case 3:
 			break;
 		default:
+			cout << "No es una opcion correcta" << endl;
 		}
 
 		// Repetir programa
