@@ -18,6 +18,20 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Includes\Cliente.h" />
+    <ClInclude Include="Includes\Prerequisites.h" />
+    <ClInclude Include="Includes\Producto.h" />
+    <ClInclude Include="Includes\Proveedor.h" />
+    <ClInclude Include="Includes\Sistema.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\Cliente.cpp" />
+    <ClCompile Include="src\Producto.cpp" />
+    <ClCompile Include="src\Proveedor.cpp" />
+    <ClCompile Include="src\Sistema.cpp" />
+    <ClCompile Include="src\SistemasOxxo.cpp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
@@ -130,20 +144,6 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClInclude Include="Includes\Cliente.h" />
-    <ClInclude Include="Includes\Prerequisites.h" />
-    <ClInclude Include="Includes\Producto.h" />
-    <ClInclude Include="Includes\Proveedor.h" />
-    <ClInclude Include="Includes\Sistema.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="Includes\Proveedor.cpp" />
-    <ClCompile Include="src\Cliente.cpp" />
-    <ClCompile Include="src\Producto.cpp" />
-    <ClCompile Include="src\Sistema.cpp" />
-    <ClCompile Include="src\SistemasOxxo.cpp" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

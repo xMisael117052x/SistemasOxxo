@@ -1,13 +1,9 @@
 #include "Prerequisites.h"
 #include "Cliente.h"
+#include <Sistema.h>
 
 int main() {
-	Cliente cliente = Cliente();
-	cliente.setNombre("leo");
-	cout << cliente.getNombre() << endl;
-
-
-
+	Sistema sistema = Sistema();
 
 	return 0;
 }

@@ -4,22 +4,32 @@ Producto::Producto()
 {
 }
 
-void Producto::setnombre(string _nombre)
+void Producto::setNombre(string _nombre)
 {
 	m_nombre = _nombre;
 }
 
-void Producto::setcantidad(double _cantidad)
+void Producto::setCantidad(double _cantidad)
 {
 	m_cantidad = _cantidad;
 }
 
-string Producto::getnombre()
+void Producto::setId(int id)
+{
+	m_id = id;
+}
+
+string Producto::getNombre()
 {
 	return m_nombre;
 }
 
-double Producto::getcantidad()
+double Producto::getCantidad()
 {
 	return m_cantidad;
+}
+
+int Producto::getId()
+{
+	return m_id;
 }

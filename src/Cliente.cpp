@@ -29,6 +29,11 @@ void Cliente::setCorreo(string _correo)
 	m_correo = _correo;
 }
 
+void Cliente::setId(int id)
+{
+	m_id = id;
+}
+
 string Cliente::getNombre()
 {
 	return m_nombre;
@@ -47,4 +52,9 @@ int Cliente::getTelefono()
 string Cliente::getCorreo()
 {
 	return m_correo;
+}
+
+int Cliente::getId()
+{
+	return m_id;
 }

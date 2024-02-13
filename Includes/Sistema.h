@@ -1,27 +1,38 @@
 #pragma once
 #include "Prerequisites.h";
 #include <Cliente.h>
-#include <Proveedor.cpp>
+#include <Proveedor.h>
 
 class Sistema {
 private:
+	// Atributos
 	vector<Cliente> m_clientes;
-	vector<Producto> m_productos;
 	vector<Proveedor> m_proveedores;
 
-
+	// Metodos
 	void setCliente(Cliente _cliente);
 
-	void setProducto(Producto _producto);
+	void setProducto(Producto _producto, int _idProveedor);
 
 	void setProveedor(Proveedor _proveedor);
 
-	void optionCliente();
+	void optionRegistrarCliente();
 
-	void optionProveedor();
+	void optionDeleteCliente();
 
-	void optionProducto();
+	void optionShowCliente();
+
+	void optionRegistrarProveedor();
+
+	void optionDeleteProveedor();
+
+	void optionShowProveedor();
+
+	void optionRegistrarProducto();
+
+	void optionDeleteProducto();
+
+	void optionShowProducto();
 public:
 	Sistema();
-
 };

@@ -3,21 +3,26 @@
 #include <Producto.h>
 class Proveedor {
 private:
+	// Atributos
+	int m_id;
 	string m_marca;
 	vector<Producto> m_producto;
 
 public:
 	Proveedor();
-	~Proveedor();
 
-	void setmarca(string _marca);
+	// Metodos
+	void setMarca(string _marca);
 
-	void setproducto(vector<Producto> _producto);
+	void setProducto(Producto _producto);
 
-	string getmarca();
-	vector<Producto> getproducto();
+	void deleteProducto(int _idProducto);
 
+	void setId(int id);
 
+	string getMarca();
 
+	vector<Producto> getProducto();
 
+	int getId();
 };

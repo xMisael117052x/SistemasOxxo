@@ -2,19 +2,24 @@
 #include "Prerequisites.h"
 class Producto {
 private:
+	// Atributos
+	int m_id;
 	string m_nombre;
 	double m_cantidad;
 
 public:
 	Producto();
 
-	~Producto();
+	// Metodos
+	void setNombre(string _nombre);
 
-	void setnombre(string _nombre);
+	void setCantidad(double _cantidad);
 
-	void setcantidad(double _cantidad);
+	void setId(int id);
 
-	string getnombre();
+	string getNombre();
 
-	double getcantidad();
+	double getCantidad();
+
+	int getId();
 };

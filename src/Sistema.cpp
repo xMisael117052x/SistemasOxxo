@@ -5,9 +5,9 @@ void Sistema::setCliente(Cliente _cliente)
 	m_clientes.push_back(_cliente);
 }
 
-void Sistema::setProducto(Producto _producto)
+void Sistema::setProducto(Producto _producto, int _idProveedor)
 {
-	m_productos.push_back(_producto);
+	m_proveedores[_idProveedor].setProducto(_producto);
 }
 
 void Sistema::setProveedor(Proveedor _proveedor)
@@ -15,7 +15,7 @@ void Sistema::setProveedor(Proveedor _proveedor)
 	m_proveedores.push_back(_proveedor);
 }
 
-void Sistema::optionCliente()
+void Sistema::optionRegistrarCliente()
 {
 	// Iniciar variables
 	string nombre;
@@ -46,16 +46,174 @@ void Sistema::optionCliente()
 	cliente.setPuntos(puntos);
 	cliente.setTelefono(telefono);
 	cliente.setCorreo(correo);
+	cliente.setId(m_clientes.size() + 1);
 
 	setCliente(cliente);
 }
 
-void Sistema::optionProveedor()
+void Sistema::optionDeleteCliente()
 {
+	// Iniciar variables
+	int id;
+
+	//Pedir datos
+	cout << "Ingresa el id del cliente que quieres eliminar: " << endl;
+	cin >> id;
+
+	// Eliminar cliente
+	m_clientes.erase(m_clientes.begin() + id - 1);
+
+	// Mensaje
+	cout << "Cliente eliminado " << id << endl;
 }
 
-void Sistema::optionProducto()
+void Sistema::optionShowCliente()
 {
+	// Mostrar clientes
+	for (int i = 0; i < m_clientes.size(); i++) {
+		cout << "###############################" << endl;
+		cout << "Id: " << m_clientes[i].getId() << endl;
+		cout << "Cliente " << i + 1 << endl;
+		cout << "Nombre: " << m_clientes[i].getNombre() << endl;
+		cout << "Puntos: " << m_clientes[i].getPuntos() << endl;
+		cout << "Telefono: " << m_clientes[i].getTelefono() << endl;
+		cout << "Correo: " << m_clientes[i].getCorreo() << endl;
+		cout << "###############################" << endl;
+	}
+}
+
+void Sistema::optionRegistrarProveedor()
+{
+	// Iniciar variables
+	string nombre;
+
+	//Pedir datos
+	cout << "Ingresa el nombre del proveedor: " << endl;
+	cin >> nombre;
+	cin.ignore();
+
+	// Crear objeto proveedor
+	Proveedor proveedor = Proveedor();
+	proveedor.setMarca(nombre);
+	proveedor.setId(m_proveedores.size() + 1);
+
+	// Introducir datos de vector de productos vacio
+	Producto producto;
+	proveedor.setProducto(producto);
+
+	setProveedor(proveedor);
+
+	// Mensaje
+	cout << "Proveedor agregado" << endl;
+}
+
+void Sistema::optionDeleteProveedor()
+{
+	// Iniciar variables
+	int id;
+
+	//Pedir datos
+	cout << "Ingresa el id del proveedor que quieres eliminar: " << endl;
+	cin >> id;
+
+	// Eliminar proveedor
+	m_proveedores.erase(m_proveedores.begin() + id - 1);
+
+	// Mensaje
+	cout << "Proveedor eliminado " << id << endl;
+}
+
+void Sistema::optionShowProveedor()
+{
+	// Mostrar proveedores
+	for (int i = 0; i < m_proveedores.size(); i++) {
+		cout << "###############################" << endl;
+		cout << "Id: " << m_proveedores[i].getId() << endl;
+		cout << "Proveedor " << i + 1 << endl;
+		cout << "Nombre: " << m_proveedores[i].getMarca() << endl;
+		cout << "###############################" << endl;
+	}
+}
+
+void Sistema::optionRegistrarProducto()
+{
+	// Iniciar variables
+	int idProveedor;
+	string nombre;
+	int cantidad;
+
+	// Mostrar proveedores
+	optionShowProveedor();
+
+	//Pedir datos
+	cout << "Ingresa el id del proveedor: " << endl;
+	cin >> idProveedor;
+
+	cout << "Ingresa el nombre del producto: " << endl;
+	cin >> nombre;
+	cin.ignore();
+
+	cout << "Introduce la cantidad de " << nombre << ":" << endl;
+	cin >> cantidad;
+
+	// Buscar proveedor y agregar producto
+	Producto producto = Producto();
+	producto.setNombre(nombre);
+	producto.setCantidad(cantidad);
+
+	if (idProveedor > 0 && idProveedor <= m_proveedores.size()) {
+		setProducto(producto, idProveedor - 1);
+	}
+	else {
+		cout << "No existe el proveedor" << endl;
+	}
+}
+
+void Sistema::optionDeleteProducto()
+{
+	// Iniciar variables
+	int idProducto;
+
+	//Pedir datos
+	cout << "Ingresa el id del producto que quieres eliminar: " << endl;
+	cin >> idProducto;
+
+	// Eliminar producto
+	for (int i = 0; i < m_proveedores.size(); i++) {
+
+		for (int j = 0; j < m_proveedores[i].getProducto().size(); j++) {
+			if (m_proveedores[i].getProducto()[j].getId() == idProducto) {
+				m_proveedores[i].deleteProducto(j);
+
+				// Mensaje
+				cout << "Producto eliminado " << idProducto << endl;
+				return;
+			}
+		}
+
+	}
+
+	// Mensaje
+	cout << "No existe el producto" << endl;
+}
+
+void Sistema::optionShowProducto()
+{
+	// Mostrar productos
+	for (int i = 0; i < m_proveedores.size(); i++) {
+		cout << "###############################" << endl;
+		cout << "Proveedor " << i + 1 << endl;
+		cout << "Nombre: " << m_proveedores[i].getMarca() << endl;
+		cout << "Productos: " << endl;
+
+		for (int j = 0; j < m_proveedores[i].getProducto().size(); j++) {
+			cout << "Id: " << m_proveedores[i].getProducto()[j].getId() << endl;
+			cout << "Nombre: " << m_proveedores[i].getProducto()[j].getNombre() << endl;
+			cout << "Cantidad: " << m_proveedores[i].getProducto()[j].getCantidad() << endl;
+		}
+
+		cout << "###############################" << endl;
+	}
 }
 
 Sistema::Sistema()
@@ -68,9 +226,18 @@ Sistema::Sistema()
 		int opcion = 0;
 		cout << "###############################" << endl;
 		cout << "Menu" << endl;
+		cout << "****Cliente****" << endl;
 		cout << "1-. Agregar cliente" << endl;
-		cout << "2-. Agregar proveedor" << endl;
-		cout << "3-. Agregar producto" << endl;
+		cout << "2-. Eliminar cliente" << endl;
+		cout << "3-. Mostrar clientes" << endl;
+		cout << "****Proveedor****" << endl;
+		cout << "4-. Agregar proveedor" << endl;
+		cout << "5-. Eliminar proveedor" << endl;
+		cout << "6-. Mostrar proveedores" << endl;
+		cout << "****Producto****" << endl;
+		cout << "7-. Agregar producto" << endl;
+		cout << "8-. Eliminar producto" << endl;
+		cout << "9-. Mostrar productos" << endl;
 		cout << "###############################" << endl;
 		cout << "Seleccione una opcion del menu" << endl;
 		cin >> opcion;
@@ -78,11 +245,31 @@ Sistema::Sistema()
 		// Ingresar a la seleccion
 		switch (opcion) {
 		case 1:
-			optionCliente();
+			optionRegistrarCliente();
 			break;
 		case 2:
+			optionDeleteCliente();
 			break;
 		case 3:
+			optionShowCliente();
+			break;
+		case 4:
+			optionRegistrarProveedor();
+			break;
+		case 5:
+			optionDeleteProveedor();
+			break;
+		case 6:
+			optionShowProveedor();
+			break;
+		case 7:
+			optionRegistrarProducto();
+			break;
+		case 8:
+			optionDeleteProducto();
+			break;
+		case 9:
+			optionShowProducto();
 			break;
 		default:
 			cout << "No es una opcion correcta" << endl;
