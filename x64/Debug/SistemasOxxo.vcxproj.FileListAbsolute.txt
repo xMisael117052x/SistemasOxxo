@@ -1,2 +1,3 @@
 C:\Users\Misael Jr\source\repos\SistemasOxxo\x64\Debug\SistemasOxxo.exe
 C:\Users\gerbo\Desktop\SistemasOxxo-master\SistemasOxxo-master\x64\Debug\SistemasOxxo.exe
+C:\Users\gerbo\Desktop\SistemasOxxo-master\x64\Debug\SistemasOxxo.exe

@@ -46,7 +46,13 @@ void Sistema::optionRegistrarCliente()
 	cliente.setPuntos(puntos);
 	cliente.setTelefono(telefono);
 	cliente.setCorreo(correo);
-	cliente.setId(m_clientes.size() + 1);
+
+	if (m_clientes.size() == 0) {
+		cliente.setId(1);
+	}
+	else {
+		cliente.setId(m_clientes.back().getId() + 1);
+	}
 
 	setCliente(cliente);
 }
@@ -61,10 +67,18 @@ void Sistema::optionDeleteCliente()
 	cin >> id;
 
 	// Eliminar cliente
-	m_clientes.erase(m_clientes.begin() + id - 1);
+	for (int i = 0; i < m_clientes.size(); i++) {
+		if (m_clientes[i].getId() == id) {
+			m_clientes.erase(m_clientes.begin() + i);
+
+			// Mensaje
+			cout << "Cliente eliminado " << id << endl;
+			return;
+		}
+	}
 
 	// Mensaje
-	cout << "Cliente eliminado " << id << endl;
+	cout << "No existe el cliente" << endl;
 }
 
 void Sistema::optionShowCliente()
@@ -95,11 +109,14 @@ void Sistema::optionRegistrarProveedor()
 	// Crear objeto proveedor
 	Proveedor proveedor = Proveedor();
 	proveedor.setMarca(nombre);
-	proveedor.setId(m_proveedores.size() + 1);
 
-	// Introducir datos de vector de productos vacio
-	Producto producto;
-	proveedor.setProducto(producto);
+
+	if (m_proveedores.size() == 0) {
+		proveedor.setId(1);
+	}
+	else {
+		proveedor.setId(m_proveedores.back().getId() + 1);
+	}
 
 	setProveedor(proveedor);
 
@@ -117,7 +134,15 @@ void Sistema::optionDeleteProveedor()
 	cin >> id;
 
 	// Eliminar proveedor
-	m_proveedores.erase(m_proveedores.begin() + id - 1);
+	for (int i = 0; i < m_proveedores.size(); i++) {
+		if (m_proveedores[i].getId() == id) {
+			m_proveedores.erase(m_proveedores.begin() + i);
+
+			// Mensaje
+			cout << "Proveedor eliminado " << id << endl;
+			return;
+		}
+	}
 
 	// Mensaje
 	cout << "Proveedor eliminado " << id << endl;
@@ -162,7 +187,24 @@ void Sistema::optionRegistrarProducto()
 	producto.setCantidad(cantidad);
 
 	if (idProveedor > 0 && idProveedor <= m_proveedores.size()) {
-		setProducto(producto, idProveedor - 1);
+		for (int i = 0; i < m_proveedores.size(); i++) {
+			if (m_proveedores[i].getId() == idProveedor) {
+				if (m_proveedores[i].getProducto().size() == 0) {
+					producto.setId(1);
+				}
+				else {
+					producto.setId(m_proveedores[i].getProducto().back().getId() + 1);
+				}
+				setProducto(producto, i);
+
+				// Mensaje
+				cout << "Producto agregado" << endl;
+				return;
+			}
+		}
+
+		// Mensaje
+		cout << "No existe el proveedor" << endl;
 	}
 	else {
 		cout << "No existe el proveedor" << endl;
@@ -201,7 +243,6 @@ void Sistema::optionShowProducto()
 {
 	// Mostrar productos
 	for (int i = 0; i < m_proveedores.size(); i++) {
-		cout << "###############################" << endl;
 		cout << "Proveedor " << i + 1 << endl;
 		cout << "Nombre: " << m_proveedores[i].getMarca() << endl;
 		cout << "Productos: " << endl;

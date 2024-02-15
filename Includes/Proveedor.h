@@ -16,7 +16,7 @@ public:
 
 	void setProducto(Producto _producto);
 
-	void deleteProducto(int _idProducto);
+	void deleteProducto(int _idPosition);
 
 	void setId(int id);
 

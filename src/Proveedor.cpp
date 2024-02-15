@@ -14,9 +14,9 @@ void Proveedor::setProducto(Producto _producto)
 	m_producto.push_back(_producto);
 }
 
-void Proveedor::deleteProducto(int _idProducto)
+void Proveedor::deleteProducto(int _idPosition)
 {
-	m_producto.erase(m_producto.begin() + _idProducto);
+	m_producto.erase(m_producto.begin() + _idPosition);
 }
 
 void Proveedor::setId(int id)
